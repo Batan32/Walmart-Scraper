@@ -22,6 +22,7 @@ search_queries = ["computers", "laptops", "desktops", "monitors", "printers", "h
 product_queue = queue.Queue()
 seen_urls = set()
 
+
 def get_product_links_from_search_page(query, page_number):
     search_url = f"https://www.walmart.com/search?q={query}&page={page_number}"
     response = requests.get(search_url, headers=BASE_HEADERS)
@@ -44,6 +45,7 @@ def get_product_links_from_search_page(query, page_number):
         print("\n\n\nSOUP WHEN NOT FOUND", soup)
 
     return product_links
+
 
 def extract_product_info(product_url):
     print("Processing URL", product_url)
@@ -73,6 +75,7 @@ def extract_product_info(product_url):
 
     return product_info
 
+
 def main():
     with open(OUTPUT_FILE, 'w') as file:
         while search_queries:
@@ -101,6 +104,7 @@ def main():
 
                 page_number += 1
                 print(page_number)
+
 
 if __name__ == "__main__":
     main()
